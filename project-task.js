@@ -19,63 +19,92 @@ This activity helps build a dynamic "To-Do List Filter" based on different crite
 // ============================================
 
 const todos = [
-    { task: "Wash the dishes", completed: false, priority: 3 },
-    { task: "Write a blog post", completed: true, priority: 1 },
-    { task: "Buy groceries", completed: false, priority: 2 },
-    { task: "Study JavaScript", completed: true, priority: 1 },
-    { task: "Walk the dog", completed: false, priority: 2 },
-  ];
+  { task: "Wash the dishes", completed: false, priority: 3 },
+  { task: "Write a blog post", completed: true, priority: 1 },
+  { task: "Buy groceries", completed: false, priority: 2 },
+  { task: "Study JavaScript", completed: true, priority: 1 },
+  { task: "Walk the dog", completed: false, priority: 2 },
+];
+
+
+// ============================================
+// 🔍 Tasks
+// ============================================
+
+/*
+🔹 Task 1: Filter Incomplete Tasks
+
+Step-by-Step:
+1. Use the `filter()` method on the todos array.
+2. Use an anonymous function as the callback.
+3. Return only the tasks that are not completed.
+*/
+
+let incompleteTasks = todos.filter(todo => todo.completed === false);
+
+/*
+🔹 Task 2: Sort Tasks by Priority
+
+Step-by-Step:
+1. Use the `sort()` method on the todos array.
+2. Use an anonymous function as the comparison function.
+3. Sort tasks in ascending order of priority (1 = highest).
+*/
+
+todos.sort((j, k) => {
+  if (j.priority < k.priority) {
+    return -1;
+  }
+  if (j.priority > k.priority) {
+    return 1;
+  }
+  return 0;
+});
+
+/*
+🔹 Task 3: Mark All Tasks as Completed
+
+Step-by-Step:
+1. Use the `map()` method to return a new array.
+2. Use an anonymous function to modify each object.
+3. Change the `completed` property to `true` for every task.
+*/
+
+const tasksCompleted = todos.map(complete => {
+return {...complete, completed: complete.completed === false ? true : complete.completed};
+});
+
+/*
+🔹 Task 4: Combine Filters
+
+Step-by-Step:
+1. First, filter the todos to get only incomplete tasks.
+2. Then, sort the filtered results by priority using `sort()`.
+3. Use method chaining to perform both steps together.
+*/
+
+let combinedFilters = todos.filter(todo => todo.completed === false).sort((j, k) => {
+    if (j.priority < k.priority) {
+      return -1;
+    }
+    if (j.priority > k.priority) {
+      return 1;
+    }
+    return 0;
+  });
+
   
-  // ============================================
-  // 🔍 Tasks
-  // ============================================
-  
-  /*
-  🔹 Task 1: Filter Incomplete Tasks
-  
-  Step-by-Step:
-  1. Use the `filter()` method on the todos array.
-  2. Use an anonymous function as the callback.
-  3. Return only the tasks that are not completed.
-  */
-  
-  
-  /*
-  🔹 Task 2: Sort Tasks by Priority
-  
-  Step-by-Step:
-  1. Use the `sort()` method on the todos array.
-  2. Use an anonymous function as the comparison function.
-  3. Sort tasks in ascending order of priority (1 = highest).
-  */
-  
-  
-  /*
-  🔹 Task 3: Mark All Tasks as Completed
-  
-  Step-by-Step:
-  1. Use the `map()` method to return a new array.
-  2. Use an anonymous function to modify each object.
-  3. Change the `completed` property to `true` for every task.
-  */
-  
-  
-  /*
-  🔹 Task 4: Combine Filters
-  
-  Step-by-Step:
-  1. First, filter the todos to get only incomplete tasks.
-  2. Then, sort the filtered results by priority using `sort()`.
-  3. Use method chaining to perform both steps together.
-  */
-  
-  
-  // ============================================
-  // 🧪 Console Test Your Work
-  // ============================================
-  
-  // console.log("Incomplete Tasks:", ...);
-  // console.log("Sorted by Priority:", ...);
-  // console.log("All Tasks Completed:", ...);
-  // console.log("Sorted Incomplete Tasks:", ...);
-  
+
+// ============================================
+// 🧪 Console Test Your Work
+// ============================================
+
+// console.log("Incomplete Tasks:", ...);
+// console.log("Sorted by Priority:", ...);
+// console.log("All Tasks Completed:", ...);
+// console.log("Sorted Incomplete Tasks:", ...);
+
+console.log(incompleteTasks);
+console.log(todos);
+console.log(tasksCompleted);
+console.log(combinedFilters);
